@@ -1,0 +1,96 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.cal-shell {
+    width: 480px;
+    height: 690px;
+    background-color: rgb(43, 115, 249);
+    border: 5px solid;
+    border-radius: 10px;
+}
+
+.cal-display {
+    font-size: 50px;
+    text-align: end;
+    background: gainsboro;
+    margin: 35px 35px;
+    border: 10px solid gray;
+    padding: 5px;
+}
+
+.text-box {
+    font-size: 25px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.power-strip {
+    display: flex;
+}
+
+.power-cel {
+    height: 50px;
+    width: 50px;
+    background-color: gray;
+    border: 2px solid;
+}
+
+.sol-power {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 65px;
+}
+
+.sol-section h3 {
+    font-size: 40px;
+    color: white;
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.num-wrapper {
+    width: 280px;
+}
+
+.cal-btn {
+    width: 80px;
+    height: 50px;
+    font-size: 25px;
+    margin-bottom: 5px;
+    border: 2px solid;
+    cursor: pointer;
+}
+
+.num-btn {
+    color: rgb(43, 115, 249); 
+    background-color: white;
+    border: 2px solid black;
+    font-weight: 700;
+}
+
+.op-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.equals-btn {
+    height: 105px;
+}
+.red-btn {
+    background-color: red;
+    color: white;
+}
