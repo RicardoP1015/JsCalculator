@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="cal-shell">
-                <div class="cal-display">12345678.</div>
+                <div class="cal-display"></div>
             <div class="sol-power">
                 <div class="sol-section">
                     <div class="text-box">PICO INSTRUMENTS</div>
@@ -45,16 +45,16 @@
                     <button class="num-btn cal-btn">1</button>
                     <button class="num-btn cal-btn">2</button>
                     <button class="num-btn cal-btn">3</button>
-                    <button class="clear-btn cal-btn red-btn">ON/C</button>
+                    <button id="clear" class="clear-btn cal-btn red-btn">ON/C</button>
                     <button class="num-btn cal-btn">0</button>
                     <button class="num-btn cal-btn">.</button>
                 </div>
                 <div class="op-wrapper">
-                    <button id="/" class="div-btn cal-btn red-btn"><i class="fa-solid fa-divide"></i></button>
-                    <button id="*" class="times-btn cal-btn red-btn"><i class="fa-solid fa-xmark"></i></button>
-                    <button id="-" class="minus-btn cal-btn red-btn"><i class="fa-solid fa-minus"></i></button>
-                    <button id="+" class="plus-btn cal-btn red-btn"><i class="fa-solid fa-plus"></i></button>
-                    <button id="=" class="equals-btn cal-btn red-btn"><i class="fa-solid fa-equals"></i></button>
+                    <button class="op-btn cal-btn red-btn" data-key="/"><i class="fa-solid fa-divide"></i></button>
+                    <button class="op-btn cal-btn red-btn" data-key="*"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="op-btn cal-btn red-btn" data-key="-" ><i class="fa-solid fa-minus"></i></button>
+                    <button class="op-btn cal-btn red-btn" data-key="+"><i class="fa-solid fa-plus"></i></button>
+                    <button class="op-btn equals-btn cal-btn red-btn" data-key="="><i class="fa-solid fa-equals"></i></button>
                 </div>
             </div>
         </div>
