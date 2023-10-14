@@ -1,58 +1,85 @@
 const numberButtons = document.querySelectorAll('.num-btn');
 const operationButtons = document.querySelectorAll('.op-btn');
 const equalsSymbol = document.querySelector('.equals-btn');
-const calDisplay = document.querySelector('.cal-display')
+const calDisplay = document.querySelector('.cal-display');
+const clearButton = document.getElementById('clear');
 let firstNumber = [];
 let secondNumber = [];
 let operation = null;
+let sum = '';
 
-const add = (num1, num2) =>  num1 + num2;
-const sub =(num1, num2) => num1 - num2;
+const add = (num1, num2) => num1 + num2;
+const sub = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
+
+const stringToNumber = (str) => parseFloat(str.join(''));
 
 const handleMathOp = (op) => {
     switch (op) {
         case '+':
-            return add(firstNumber, secondNumber);
+            return add(stringToNumber(firstNumber), stringToNumber(secondNumber));
         case '-':
-            return sub(firstNumber, secondNumber);
+            return sub(stringToNumber(firstNumber), stringToNumber(secondNumber));
         case '*':
-            return multiply(firstNumber, secondNumber);
+            return multiply(stringToNumber(firstNumber), stringToNumber(secondNumber));
         case '/':
-            return divide(firstNumber, secondNumber);
+            return divide(stringToNumber(firstNumber), stringToNumber(secondNumber));
     };
 };
 
-numberButtons.forEach(numButton => {
-    numButton.addEventListener('click', () => {
-        if (operation) {
-        secondNumber.push(numButton.textContent)
-        calDisplay.textContent =  `${firstNumber.join('')} ${operation} ${secondNumber.join('')}`;
-        } else {
-        firstNumber.push(numButton.textContent);
+const clear = () => {
+    firstNumber = [];
+    secondNumber = [];
+    operation = null;
+    calDisplay.textContent = '';
+}
+
+const handleNumbers = (event) => {
+    if (operation) {
+        secondNumber.push(event.target.textContent)
+        calDisplay.textContent = `${firstNumber.join('')} ${operation} ${secondNumber.join('')}`;
+    } else {
+        firstNumber.push(event.target.textContent);
         calDisplay.textContent = firstNumber.join('');
-        };
-    });
+    };
+};
+
+const handleOperation = (event) => {
+    if (firstNumber.length === 0 || operation) return;
+
+    operation = event.target.dataset.key;
+    calDisplay.textContent = `${firstNumber.join('')} ${operation}`;
+};
+
+const handleCalculations = () => {
+    sum = handleMathOp(operation);
+    calDisplay.textContent = sum;
+    firstNumber = [sum];
+    operation = null;
+    secondNumber = [];
+} 
+
+const handleEqualsButton = () => {
+    if (!operation || firstNumber.length === 0 || secondNumber.length === 0) {
+        calDisplay.textContent = 'Error';
+        setTimeout(() => {
+            calDisplay.textContent = `${firstNumber.join('')} ${operation ? operation : ''}`;
+        }, 1000);
+    } else {
+        handleCalculations();
+    };
+}
+
+
+numberButtons.forEach(numButton => {
+    numButton.addEventListener('click', handleNumbers);
 });
 
 operationButtons.forEach(opButton => {
-    opButton.addEventListener('click', () => {
-        if (firstNumber.length === 0 || operation) return;
-
-        operation = opButton.dataset.key;
-        calDisplay.textContent = `${firstNumber.join('')} ${operation}`;
-    });
+    opButton.addEventListener('click', handleOperation);
 });
 
+clearButton.addEventListener('click', clear);
 
-equalsSymbol.addEventListener('click', () => {
-    if (!operation) {
-        calDisplay.textContent = 'Error';
-        setTimeout(() => {
-            calDisplay.textContent = '';
-        }, 2000);
-    } else {
-        handleMathOp(operation);
-    };
-});
+equalsSymbol.addEventListener('click', handleEqualsButton);
